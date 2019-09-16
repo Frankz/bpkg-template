@@ -21,6 +21,7 @@ function template () {
   cd "bpkg-$APP_NAME" 
   touch example.sh && touch LICENSE && touch Makefile && touch package.json && touch $APP_NAME.sh
   curl -sS -Lo- https://opensource.org/licenses/MIT | grep -A 10  "Begin license text" | grep  -v "Begin license text." | grep -v LicenseText | sed 's/<[^>]*>//g' | sed "s|&lt;YEAR&gt;|$(date +\"%Y\")|g" | sed "s|&lt;COPYRIGHT HOLDER&gt;|\"$(whoami)\"|g" > LICENSE
+  
 
 
 }

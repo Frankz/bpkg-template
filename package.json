@@ -1,0 +1,7 @@
+{
+    "name": "bpkg-template",
+    "version": "0.0.1",
+    "description": "Terminal utility for create bpkg templates",
+    "scripts": [ "bpkg-template.sh" ],
+    "install": "make install"
+  }
