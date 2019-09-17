@@ -1,3 +1,4 @@
+
 BIN ?= bpkg-template
 PREFIX ?= /usr/local
 
