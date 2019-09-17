@@ -54,7 +54,7 @@ EOF
   # fill the bpkg-${APP_NAME}.sh
   ################
   cat > bpkg-${APP_NAME}.sh <<EOF
-function pkg-${APP_NAME} () {
+function bpkg-${APP_NAME} () {
   echo "# Test line to delete"
   echo $@
   
