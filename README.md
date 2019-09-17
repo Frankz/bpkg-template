@@ -14,7 +14,7 @@ $ curl -Lo- "https://raw.githubusercontent.com/bpkg/bpkg/master/setup.sh" | bash
 Then install bpkg-template globally
 
 ```bash
-bpkg install Frankz/bpkg-template -g
+$ sudo bpkg install Frankz/bpkg-template -g
 
 ```
 
