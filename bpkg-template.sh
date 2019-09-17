@@ -9,11 +9,11 @@ function input () {
   read -p "${2}" "${1}"
 }
 
-function template () {
+function bpkg-template () {
   # pedimos el nombre de la app
   # input ${input_var_name} ${message prompt}
-  input APP_NAME "Introducir nombre de la app: "
-  input LICENSE "Insert license: "
+  input APP_NAME "Insert name for your App: "
+  input LICENSE "Insert kind of License: "
   
   # eso sirve para crear un directorio en el lugar donde estamos, con el nombre "bpkg-$NOMBRE_DE_LA_APP"
   # dentro creamos los archivos que corresponden como base
@@ -31,7 +31,7 @@ function template () {
 ## export if so else execute
 ## main function with args
 if [[ ${BASH_SOURCE[0]} != $0 ]]; then
-  export -f template
+  export -f bpkg-template
 else
-  template "${@}"
+  bpkg-template "${@}"
 fi
