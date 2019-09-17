@@ -20,13 +20,76 @@ function bpkg-template () {
   # eso sirve para crear un directorio en el lugar donde estamos, con el nombre "bpkg-$NOMBRE_DE_LA_APP"
   # dentro creamos los archivos que corresponden como base
   cd $WORKDIR
-  mkdir $WORKDIR"/bpkg-$APP_NAME" 
-  cd $WORKDIR"/bpkg-$APP_NAME" 
+  mkdir $WORKDIR"/bpkg-${APP_NAME}"
+  cd $WORKDIR"/bpkg-${APP_NAME}" 
+  # create files
   touch example.sh && touch LICENSE && touch Makefile && touch package.json && touch $APP_NAME.sh
+  ################
+  # fill LICENSE
+  ################
   curl -sS -Lo- https://opensource.org/licenses/MIT | grep -A 10  "Begin license text" | grep  -v "Begin license text." | grep -v LicenseText | sed 's/<[^>]*>//g' | sed "s|&lt;YEAR&gt;|$(date +\"%Y\")|g" | sed "s|&lt;COPYRIGHT HOLDER&gt;|\"$(whoami)\"|g" > LICENSE
+
+  ################
+  # fill Makefile
+  ################
+  cat > Makefile <<EOF
+
+BIN ?= bpkg-${APP_NAME}
+PREFIX ?= /usr/local
+
+install:
+	cp bpkg-${APP_NAME}.sh $(PREFIX)/bin/$(BIN)
+
+uninstall:
+	rm -f $(PREFIX)/bin/$(BIN)
+
+example.sh:
+	./example.sh
+
+.PHONY: example.sh
+
+EOF
+
+  ################
+  # fill the bpkg-${APP_NAME}.sh
+  ################
+  cat > bpkg-${APP_NAME}.sh <<EOF
+function pkg-${APP_NAME} () {
+  echo "# Test line to delete"
+  echo $@
   
+}
 
+## detect if being sourced and
+## export if so else execute
+## main function with args
+if [[ ${BASH_SOURCE[0]} != $0 ]]; then
+  export -f bpkg-${APP_NAME}
+else
+  bpkg-${APP_NAME} "${@}"
+fi
+EOF
 
+  ################
+  # fill the package.json
+  ################
+  cat > package.json <<EOF
+{
+  "name": "bpkg-${APP_NAME}",
+  "version": "0.0.1",
+  "description": "Add a custom message here about your ${APP_NAME}",
+  "scripts": [ "bpkg-${APP_NAME}.sh" ],
+  "install": "make install"
+}
+EOF
+
+  ################
+  # fill the package.json
+  ################
+  cat > README.md <<EOF
+# bpkg-${APP_NAME}
+Add custom message description about your ${APP_NAME} app.
+EOF
 }
 
 
