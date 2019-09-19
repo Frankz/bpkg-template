@@ -26,3 +26,7 @@ bpkg-template
 # insert name for your App
 # insert kind of License
 ```
+
+## For Testing
+
+https://stackoverflow.com/questions/20449707/using-travis-ci-for-testing-on-unix-shell-scripts

@@ -14,14 +14,14 @@ function bpkg-template () {
   # input ${input_var_name} ${message prompt}
   WORKDIR=$(pwd)
   input APP_NAME "Insert name for your App: "
-  echo "Create app in $WORKDIR/bpkg-$APP_NAME"
+  echo "Create app in $WORKDIR/$APP_NAME"
   input LICENSE "Insert kind of License: "
   
-  # eso sirve para crear un directorio en el lugar donde estamos, con el nombre "bpkg-$NOMBRE_DE_LA_APP"
+  # eso sirve para crear un directorio en el lugar donde estamos, con el nombre "$NOMBRE_DE_LA_APP"
   # dentro creamos los archivos que corresponden como base
   cd $WORKDIR
-  mkdir $WORKDIR"/bpkg-${APP_NAME}"
-  cd $WORKDIR"/bpkg-${APP_NAME}" 
+  mkdir $WORKDIR"/${APP_NAME}"
+  cd $WORKDIR"/${APP_NAME}" 
   # create files
   touch example.sh && touch LICENSE && touch Makefile && touch package.json && touch $APP_NAME.sh
   ################
@@ -32,29 +32,30 @@ function bpkg-template () {
   ################
   # fill Makefile
   ################
-  cat > Makefile <<EOF
 
-BIN ?= bpkg-${APP_NAME}
+  cat > Makefile <</EOF
+BIN ?= ${APP_NAME}
 PREFIX ?= /usr/local
 
 install:
-	cp bpkg-${APP_NAME}.sh $(PREFIX)/bin/$(BIN)
+        cp ${APP_NAME}.sh \$(PREFIX)/bin/\$(BIN)
 
 uninstall:
-	rm -f $(PREFIX)/bin/$(BIN)
+        rm -f \$(PREFIX)/bin/\$(BIN)
 
 example.sh:
-	./example.sh
+        ./example.sh
 
 .PHONY: example.sh
 
-EOF
+/EOF
+
 
   ################
-  # fill the bpkg-${APP_NAME}.sh
+  # fill the ${APP_NAME}.sh
   ################
-  cat > bpkg-${APP_NAME}.sh <<EOF
-function bpkg-${APP_NAME} () {
+  cat > ${APP_NAME}.sh <<EOF
+function ${APP_NAME} () {
   echo "# Test line to delete"
   echo $@
   
@@ -64,9 +65,9 @@ function bpkg-${APP_NAME} () {
 ## export if so else execute
 ## main function with args
 if [[ ${BASH_SOURCE[0]} != $0 ]]; then
-  export -f bpkg-${APP_NAME}
+  export -f ${APP_NAME}
 else
-  bpkg-${APP_NAME} "${@}"
+  ${APP_NAME} "${@}"
 fi
 EOF
 
@@ -75,10 +76,10 @@ EOF
   ################
   cat > package.json <<EOF
 {
-  "name": "bpkg-${APP_NAME}",
+  "name": "${APP_NAME}",
   "version": "0.0.1",
   "description": "Add a custom message here about your ${APP_NAME}",
-  "scripts": [ "bpkg-${APP_NAME}.sh" ],
+  "scripts": [ "${APP_NAME}.sh" ],
   "install": "make install"
 }
 EOF
@@ -87,7 +88,7 @@ EOF
   # fill the package.json
   ################
   cat > README.md <<EOF
-# bpkg-${APP_NAME}
+# ${APP_NAME}
 Add custom message description about your ${APP_NAME} app.
 EOF
 }
