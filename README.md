@@ -4,7 +4,7 @@ Tool for build the base for create any bpkg tool
 
 ## Install 
 
-First, intall bpkg https://github.com/bpkg/bpkg
+First, install bpkg https://github.com/bpkg/bpkg
 
 ```bash
 $ curl -Lo- "https://raw.githubusercontent.com/bpkg/bpkg/master/setup.sh" | bash

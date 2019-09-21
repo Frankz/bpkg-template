@@ -4,9 +4,9 @@
 # @Param string $1
 # - Name of variable where save input
 # @Param string $2
-# - Message in pront
+# - Message in promt
 function input () {
-  read -p "${2}" "${1}"
+  read -p -t3 "${2}" "${1}"
 }
 
 function bpkg-template () {
@@ -91,6 +91,9 @@ EOF
 # ${APP_NAME}
 Add custom message description about your ${APP_NAME} app.
 EOF
+
+.
+
 }
 
 
