@@ -6,7 +6,7 @@
 # @Param string $2
 # - Message in promt
 function input () {
-  read -p -t3 "${2}" "${1}"
+  read -t 3 -p "${2}" "${1}"
 }
 
 function bpkg-template () {
