@@ -66,9 +66,9 @@ function ${APP_NAME} () {
 ## export if so else execute
 ## main function with args
 if [[ ${BASH_SOURCE[0]} != $0 ]]; then
-  export -f ${APP_NAME}
+  export -f ${APP_NAME} "\${@}"
 else
-  ${APP_NAME} "${@}"
+  ${APP_NAME} "\${@}"
 fi
 EOF
 
@@ -100,7 +100,7 @@ EOF
 ## export if so else execute
 ## main function with args
 if [[ ${BASH_SOURCE[0]} != $0 ]]; then
-  export -f bpkg-template "\$@"
+  export -f bpkg-template "${@}"
 else
-  bpkg-template "\${@}"
+  bpkg-template "${@}"
 fi
