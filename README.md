@@ -30,3 +30,7 @@ bpkg-template
 ## For Testing
 
 https://stackoverflow.com/questions/20449707/using-travis-ci-for-testing-on-unix-shell-scripts
+
+## FAQ
+
+On windows we need "make" command, for that use this steps: https://stat545.com/make-windows.html

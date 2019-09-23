@@ -93,7 +93,6 @@ EOF
 Add custom message description about your ${APP_NAME} app.
 EOF
 
-.
 
 }
 
@@ -102,7 +101,7 @@ EOF
 ## export if so else execute
 ## main function with args
 if [[ ${BASH_SOURCE[0]} != $0 ]]; then
-  export -f bpkg-template
+  export -f bpkg-template "\$@"
 else
-  bpkg-template "${@}"
+  bpkg-template "\${@}"
 fi
