@@ -93,7 +93,6 @@ EOF
 Add custom message description about your ${APP_NAME} app.
 EOF
 
-
 }
 
 
